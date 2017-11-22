@@ -1,5 +1,6 @@
 # DaemonService
 进程 保活：根据系统漏洞，进行灰色保活，创建一个没有notification的前台进程，相当于后台进程（目前像QQ，微信，陌陌，支付宝都是依赖于这个漏洞进行的app保活）<br> 
+其实Google察觉到了此漏洞的存在，并逐步进行封堵。这就是为什么这种保活方式分 API >= 18 和 API < 18 两种情况，从Android8.0的ServiceRecord类的postNotification函数源代码中可以看到这样的一行注释
 所说的漏洞请看下图<br>
 ------------------------------------------------------------
 ![image](https://github.com/HadisNZL/DaemonService/blob/master/screenshot/daemonservice.png)<br>
