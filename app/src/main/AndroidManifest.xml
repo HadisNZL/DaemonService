@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hadis.daemonservice">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".receiver.WakeReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.wake.gray" />
+            </intent-filter>
+        </receiver>
+        <!--各类组件元素的清单文件条目activity、service、receiver 和 provider均支持 android:process 属性，
+        此属性可以指定该组件应在哪个进程运行。您可以设置此属性，使每个组件均在各自的进程中运行，或者使一些组件共享一个进程，
+        而其他组件则不共享。 此外，您还可以设置 android:process
+        ，使不同应用的组件在相同的进程中运行，但前提是这些应用共享相同的 Linux 用户 ID 并使用相同的证书进行签署。-->
+
+        <!--start-灰色保活需要-->
+        <service
+            android:name=".service.GrayService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":gray" />
+
+        <service
+            android:name=".service.GrayService$GrayInnerService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":gray" />
+
+        <service
+            android:name=".receiver.WakeReceiver$WakeNotifyService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".receiver.WakeReceiver$WakeGrayInnerService"
+            android:enabled="true"
+            android:exported="false" />
+        <!--end-灰色保活需要-->
+
+        <!--start-白色保活-->
+        <service
+            android:name=".service.WhiteService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":white" />
+        <!--end-白色保活-->
+
+        <!--start-普通进程-->
+        <service
+            android:name=".service.BackgroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":bg" />
+        <!--end-普通进程-->
+    </application>
+
+</manifest>
