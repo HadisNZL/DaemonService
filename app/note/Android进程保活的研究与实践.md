@@ -203,7 +203,7 @@ http://www.cnblogs.com/angeldevil/archive/2013/05/21/3090872.html
 
 文章到此结束，相关简单的实践代码请看
 
-https://github.com/D-clock/AndroidDaemonService
+https://github.com/HadisNZL/DaemonService
 
 为了感谢看完本文的童鞋，特地献上福利图片一张。。。。。。。。。请注意：
 
